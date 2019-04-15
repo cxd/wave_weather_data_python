@@ -1,0 +1,54 @@
+{
+  "climate": {
+    "baseDir": "data/climate_stations",
+    "skipRows": 13,
+    "columns": [
+      "site",
+      "date",
+      "Evapotranspiration_mm",
+      "Rain_mm",
+      "Space",
+      "PanEvaporation_mm",
+      "MaximumTemperature_C",
+      "MaxRelativeHumidity_pc",
+      "MinRelativeHumidity_pc",
+      "Avg10mWindSpeed_m_sec",
+      "SolarRadiation_MJ_sqm"
+    ]
+  },
+  "wave": {
+    "baseDir": "data/wave",
+    "skipRows": 1,
+    "columns": [
+      "DateTime",
+      "Hs",
+      "Hmax",
+      "Tz",
+      "Tp",
+      "DirTpTRUE",
+      "SST"
+    ]
+  },
+  "siteMap": [
+    {
+      "wave": "caloundra",
+      "climate": "redcliffe"
+    },
+    {
+      "wave": "brisbane",
+      "climate": "brisbane"
+    },
+    {
+      "wave": "mooloolaba",
+      "climate": "sunshine_coast_airport"
+    },
+    {
+      "wave": "northmoretonbay",
+      "climate": "cape_moreton_lighthouse"
+    },
+    {
+      "wave": "goldcoast",
+      "climate": "gold_coast_seaway"
+    }
+  ]
+}

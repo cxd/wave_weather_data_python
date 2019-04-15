@@ -1,0 +1,21 @@
+'IDCKWCDE41,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for CAPE MORETON LIGHTHOUSE Queensland for April 2019,,,,,,,,,,
+Issued at 22:31 GMT on Saturday 06 April 2019,,,,,,,,,,
+© Copyright Commonwealth of Australia 2019 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+CAPE MORETON LIGHTHOUSE,30/03/2019,2.5,4.0, ,26.3,22.9,96,81,8.48,9.13
+CAPE MORETON LIGHTHOUSE,31/03/2019,4.7,9.2, ,24.0,16.6,85,52,6.28,21.73
+CAPE MORETON LIGHTHOUSE,01/04/2019,6.2,0.2, ,24.9,21.0,67,50,10.57,16.79
+CAPE MORETON LIGHTHOUSE,02/04/2019,5.0,0.0, ,26.1,21.1,85,59,11.34,15.65
+CAPE MORETON LIGHTHOUSE,03/04/2019,4.4,1.4, ,25.9,20.6,92,64,12.62,15.40
+CAPE MORETON LIGHTHOUSE,04/04/2019,4.3,1.2, ,25.2,20.1,93,60,11.93,14.30
+CAPE MORETON LIGHTHOUSE,05/04/2019,4.9,2.0, ,25.2,19.6,94,51,9.88,18.19
+Totals:,,32,18, ,,,,,, 

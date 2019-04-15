@@ -1,0 +1,42 @@
+'IDCKWCDE41,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for REDCLIFFE Queensland for February 2013,,,,,,,,,,
+Issued at 22:38 GMT on Friday 01 March 2013,,,,,,,,,,
+© Copyright Commonwealth of Australia 2013 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+REDCLIFFE,01/02/2013,5.8,0.8, ,28.8,22.3,88,56,5.80,24.10
+REDCLIFFE,02/02/2013,7.9,5.8, ,31.4,20.7,90,24,5.18,29.01
+REDCLIFFE,03/02/2013,7.8,0.2, ,26.5,21.0,62,39,7.75,27.36
+REDCLIFFE,04/02/2013,6.3,0.0, ,27.7,18.7,78,46,8.68,17.96
+REDCLIFFE,05/02/2013,5.7,0.0, ,27.4,20.3,89,53,8.44,21.11
+REDCLIFFE,06/02/2013,6.0,6.6, ,26.7,18.9,90,52,6.82,27.04
+REDCLIFFE,07/02/2013,5.3,2.6, ,26.7,19.6,87,50,6.10,19.95
+REDCLIFFE,08/02/2013,5.0,0.4, ,27.1,19.9,85,61,6.37,20.03
+REDCLIFFE,09/02/2013,6.1,0.0, ,28.0,21.6,83,51,6.06,24.22
+REDCLIFFE,10/02/2013,6.6,0.0, ,27.9,21.8,72,46,4.41,28.06
+REDCLIFFE,11/02/2013,6.8,0.0, ,28.1,21.8,78,50,6.45,27.89
+REDCLIFFE,12/02/2013,6.3,0.0, ,27.8,21.9,79,53,6.49,25.62
+REDCLIFFE,13/02/2013,4.7,0.0, ,25.6,20.7,86,55,9.27,12.25
+REDCLIFFE,14/02/2013,6.0,3.4, ,27.9,20.3,80,59,7.03,25.48
+REDCLIFFE,15/02/2013,3.3,0.8, ,26.2,21.1,88,68,6.30,9.29
+REDCLIFFE,16/02/2013,3.8,21.0, ,26.4,19.2,91,64,6.79,13.06
+REDCLIFFE,17/02/2013,3.9,3.0, ,24.7,20.8,90,69,8.23,16.24
+REDCLIFFE,18/02/2013,2.7,20.2, ,24.7,19.8,89,70,9.06,3.08
+REDCLIFFE,19/02/2013,2.8,40.0, ,26.0,21.2,91,77,9.59,7.13
+REDCLIFFE,20/02/2013,5.5,6.8, ,29.2,20.4,88,54,5.69,21.06
+REDCLIFFE,21/02/2013,5.1,1.4, ,28.4,21.8,82,55,6.21,16.34
+REDCLIFFE,22/02/2013,5.6,0.2, ,29.2,21.3,73,48,5.84,15.76
+REDCLIFFE,23/02/2013,7.0,0.2, ,30.5,22.9,85,47,6.72,26.57
+REDCLIFFE,24/02/2013,4.3,13.2, ,28.6,21.9,90,58,4.25,15.66
+REDCLIFFE,25/02/2013,2.0,29.8, ,25.9,22.7,90,82,7.95,3.42
+REDCLIFFE,26/02/2013,3.4,44.8, ,26.2,21.2,90,69,7.12,10.32
+REDCLIFFE,27/02/2013,4.9,5.8, ,27.6,23.3,85,64,7.96,17.63
+REDCLIFFE,28/02/2013,3.7,3.8, ,26.8,21.6,88,63,4.75,12.75
+Totals:,,144.3,210.8, ,,,,,, 

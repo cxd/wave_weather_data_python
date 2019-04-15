@@ -1,0 +1,42 @@
+'IDCKWCDE41,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for REDCLIFFE Queensland for February 2011,,,,,,,,,,
+Issued at 22:35 GMT on Tuesday 01 March 2011,,,,,,,,,,
+© Copyright Commonwealth of Australia 2011 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+REDCLIFFE,01/02/2011,5.7,1.6, ,30.4,24.2,89,59,4.41,23.94
+REDCLIFFE,02/02/2011,6.2,1.2, ,31.5,24.7,89,65,5.49,26.69
+REDCLIFFE,03/02/2011,6.4,0.0, ,31.0,25.3,86,65,5.97,27.50
+REDCLIFFE,04/02/2011,6.9,0.0, ,31.4,23.6,88,58,5.59,29.92
+REDCLIFFE,05/02/2011,6.9,0.2, ,31.1,25.3,84,63,6.81,29.10
+REDCLIFFE,06/02/2011,6.2,3.6, ,31.6,25.3,88,63,5.46,25.98
+REDCLIFFE,07/02/2011,5.3,0.4, ,29.1,24.6,87,62,9.04,16.80
+REDCLIFFE,08/02/2011,3.5,0.4, ,26.2,22.7,89,72,7.91,11.48
+REDCLIFFE,09/02/2011,6.8,4.4, ,28.8,21.5,86,48,9.78,22.97
+REDCLIFFE,10/02/2011,6.9,0.2, ,29.3,21.0,81,52,7.43,27.75
+REDCLIFFE,11/02/2011,5.3,1.8, ,28.9,21.0,87,54,4.60,21.63
+REDCLIFFE,12/02/2011,6.7,0.0, ,30.2,20.1,88,47,4.04,30.56
+REDCLIFFE,13/02/2011,6.2,4.6, ,30.2,21.5,89,56,4.99,27.20
+REDCLIFFE,14/02/2011,7.1,0.0, ,30.6,23.5,85,52,8.19,26.47
+REDCLIFFE,15/02/2011,5.7,5.6, ,29.7,20.9,89,58,6.80,22.74
+REDCLIFFE,16/02/2011,5.6,8.6, ,29.5,21.2,88,60,6.39,23.07
+REDCLIFFE,17/02/2011,5.4,5.4, ,28.6,22.7,88,61,5.49,23.34
+REDCLIFFE,18/02/2011,5.8,2.8, ,29.2,22.1,100,62,4.86,29.33
+REDCLIFFE,19/02/2011,6.5,0.4, ,29.9,24.7,81,58,4.50,28.95
+REDCLIFFE,20/02/2011,7.0,0.0, ,31.8,22.1,87,48,4.95,29.24
+REDCLIFFE,21/02/2011,6.0,0.0, ,31.7,24.5,90,60,5.38,24.42
+REDCLIFFE,22/02/2011,6.6,20.2, ,27.7,22.2,87,52,13.96,21.06
+REDCLIFFE,23/02/2011,4.9,0.8, ,25.7,18.5,88,58,10.03,17.41
+REDCLIFFE,24/02/2011,5.2,2.0, ,26.4,19.1,88,59,7.35,22.99
+REDCLIFFE,25/02/2011,6.0,0.0, ,27.5,19.5,79,52,4.04,28.97
+REDCLIFFE,26/02/2011,6.0,0.0, ,28.1,19.5,87,48,4.23,28.38
+REDCLIFFE,27/02/2011,6.4,0.0, ,29.1,21.7,78,46,4.61,26.34
+REDCLIFFE,28/02/2011,6.7,0.0, ,30.8,21.2,80,51,5.03,28.35
+Totals:,,169.9,64.2, ,,,,,, 

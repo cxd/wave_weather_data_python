@@ -1,0 +1,44 @@
+'IDCKWCDE41,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for REDCLIFFE Queensland for June 2016,,,,,,,,,,
+Issued at 22:30 GMT on Friday 01 July 2016,,,,,,,,,,
+© Copyright Commonwealth of Australia 2016 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+REDCLIFFE,01/06/2016,2.9,0.0, ,20.8,16.3,78,58,5.75,7.46
+REDCLIFFE,02/06/2016,2.1,0.8, ,20.2,16.2,90,70,5.46,8.68
+REDCLIFFE,03/06/2016,1.9,17.0, ,21.4,15.5,91,76,4.44,8.93
+REDCLIFFE,04/06/2016,1.9,62.0, ,21.9,16.8,92,76,7.86,4.22
+REDCLIFFE,05/06/2016,3.3,14.2, ,19.0,14.4,74,54,6.89,13.68
+REDCLIFFE,06/06/2016,3.5,0.0, ,18.5,14.2,65,44,5.94,8.64
+REDCLIFFE,07/06/2016,3.6,0.0, ,21.9,11.8,67,30,4.06,14.04
+REDCLIFFE,08/06/2016,3.3,0.0, ,23.7,12.2,77,28,3.04,14.02
+REDCLIFFE,09/06/2016,3.0,0.0, ,25.4,12.1,81,35,2.69,13.99
+REDCLIFFE,10/06/2016,3.6,0.0, ,25.1,17.8,78,30,3.39,13.92
+REDCLIFFE,11/06/2016,2.4,0.0, ,22.8,12.0,80,42,2.02,13.63
+REDCLIFFE,12/06/2016,3.0,0.0, ,21.2,12.1,86,55,6.96,8.97
+REDCLIFFE,13/06/2016,2.7,0.4, ,20.4,15.1,88,65,8.29,10.37
+REDCLIFFE,14/06/2016,2.6,5.2, ,21.7,15.1,91,62,5.69,11.11
+REDCLIFFE,15/06/2016,2.7,5.0, ,20.9,14.9,87,62,6.05,12.23
+REDCLIFFE,16/06/2016,2.4,4.6, ,21.3,14.7,92,53,3.56,10.84
+REDCLIFFE,17/06/2016,2.0,0.6, ,22.4,12.7,90,60,2.23,10.89
+REDCLIFFE,18/06/2016,1.8,0.0, ,22.4,14.5,92,66,2.75,8.76
+REDCLIFFE,19/06/2016,1.7,6.8, ,22.2,18.7,93,76,5.90,3.98
+REDCLIFFE,20/06/2016,3.0,54.8, ,20.6,15.5,93,43,4.84,13.72
+REDCLIFFE,21/06/2016,3.0,0.0, ,20.9,13.5,70,40,3.45,12.73
+REDCLIFFE,22/06/2016,2.5,0.0, ,21.8,12.8,81,44,3.02,9.03
+REDCLIFFE,23/06/2016,1.8,0.8, ,19.2,14.5,82,56,2.41,6.31
+REDCLIFFE,24/06/2016,3.7,0.0, ,23.3,15.5,83,39,5.25,11.83
+REDCLIFFE,25/06/2016,3.5,0.0, ,17.6,10.4,61,26,4.61,13.99
+REDCLIFFE,26/06/2016,1.5,0.0, ,17.1,5.6,82,43,1.26,10.07
+REDCLIFFE,27/06/2016, ,0.6, , ,9.9,89,55,3.90,9.92
+REDCLIFFE,28/06/2016, , , ,18.1, ,66,38,3.68,14.05
+REDCLIFFE,29/06/2016,2.4,0.0, ,20.2,8.0,82,40,2.62,14.08
+REDCLIFFE,30/06/2016,2.2,0.0, ,20.6,8.8,87,50,2.31,14.10
+Totals:,,74,172.8, ,,,,,, 

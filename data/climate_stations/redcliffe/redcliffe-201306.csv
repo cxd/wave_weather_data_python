@@ -1,0 +1,44 @@
+'IDCKWCDE41,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for REDCLIFFE Queensland for June 2013,,,,,,,,,,
+Issued at 22:31 GMT on Monday 01 July 2013,,,,,,,,,,
+© Copyright Commonwealth of Australia 2013 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+REDCLIFFE,01/06/2013,2.3,1.0, ,22.0,14.3,90,52,2.96,10.17
+REDCLIFFE,02/06/2013,3.0,0.0, ,24.6,15.2,88,53,4.13,12.08
+REDCLIFFE,03/06/2013,3.7,0.2, ,21.6,14.0,80,34,4.53,16.29
+REDCLIFFE,04/06/2013,3.2,0.0, ,22.1,10.9,81,41,3.73,16.16
+REDCLIFFE,05/06/2013,2.1,0.0, ,20.6,13.1,89,64,3.60,9.77
+REDCLIFFE,06/06/2013,2.3,0.0, ,22.5,14.8,90,49,2.55,10.29
+REDCLIFFE,07/06/2013,2.2,0.0, ,22.9,15.3,88,62,2.68,11.36
+REDCLIFFE,08/06/2013,2.3,0.0, ,21.9,13.7,90,64,4.93,9.24
+REDCLIFFE,09/06/2013,2.6,29.2, ,21.1,16.7,92,62,7.05,8.16
+REDCLIFFE,10/06/2013,1.5,22.8, ,18.5,15.5,92,74,3.85,4.79
+REDCLIFFE,11/06/2013,1.8,26.6, ,21.9,16.2,92,74,2.38,10.61
+REDCLIFFE,12/06/2013,1.6,0.8, ,21.4,16.0,92,82,3.49,8.85
+REDCLIFFE,13/06/2013,1.9,11.2, ,22.7,17.2,92,66,2.45,9.87
+REDCLIFFE,14/06/2013,2.8,0.2, ,21.1,12.7,87,43,3.07,15.91
+REDCLIFFE,15/06/2013,3.4,0.0, ,18.9,10.9,76,43,5.52,15.88
+REDCLIFFE,16/06/2013,2.6,0.0, ,20.3,9.7,82,43,2.92,15.62
+REDCLIFFE,17/06/2013,3.2,0.0, ,19.2,8.8,76,34,3.79,16.27
+REDCLIFFE,18/06/2013,3.3,0.0, ,19.0,8.6,68,28,3.63,16.25
+REDCLIFFE,19/06/2013,3.1,0.0, ,18.3,8.1,70,32,3.92,15.60
+REDCLIFFE,20/06/2013,2.5,0.0, ,19.1,11.6,73,53,3.71,10.21
+REDCLIFFE,21/06/2013,1.2,3.2, ,13.4,12.5,91,73,3.46,3.58
+REDCLIFFE,22/06/2013,2.5,7.6, ,18.9,9.1,92,52,3.76,15.79
+REDCLIFFE,23/06/2013,2.5,0.0, ,19.7,9.2,85,54,3.78,15.57
+REDCLIFFE,24/06/2013,3.1,0.0, ,20.7,11.4,87,30,3.30,15.87
+REDCLIFFE,25/06/2013,3.4,0.0, ,18.4,7.7,69,30,4.39,15.90
+REDCLIFFE,26/06/2013,3.2,0.0, ,19.7,7.9,79,30,3.57,16.25
+REDCLIFFE,27/06/2013,2.0,0.0, ,20.6,11.1,90,64,4.26,7.99
+REDCLIFFE,28/06/2013, ,1.2, ,19.6,15.1,90,69,4.67, 
+REDCLIFFE,29/06/2013,2.1,2.6, ,19.6,14.4,91,66,5.24,8.86
+REDCLIFFE,30/06/2013,1.5,2.8, ,16.6,13.8,89,79,5.11,6.71
+Totals:,,72.9,109.4, ,,,,,, 

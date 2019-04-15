@@ -1,0 +1,44 @@
+'IDCKWCDE41,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for REDCLIFFE Queensland for November 2009,,,,,,,,,,
+Issued at 04:34 GMT on Thursday 22 July 2010,,,,,,,,,,
+© Copyright Commonwealth of Australia 2009 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+REDCLIFFE,01/11/2009,4.7,6.8, ,23.7,17.7,90,57,4.62,23.31
+REDCLIFFE,02/11/2009,5.9,0.0, ,24.5,16.2,84,47,4.29,30.72
+REDCLIFFE,03/11/2009,6.8,0.0, ,26.9,15.2,79,44,6.34,30.62
+REDCLIFFE,04/11/2009,7.6,0.0, ,28.8,20.0,77,43,7.17,30.46
+REDCLIFFE,05/11/2009,6.0,0.0, ,27.7,18.4,88,56,5.24,29.35
+REDCLIFFE,06/11/2009,4.3,0.0, ,25.3,18.2,85,62,4.93,18.56
+REDCLIFFE,07/11/2009,6.9,0.8, ,26.3,21.2,69,48,6.19,28.96
+REDCLIFFE,08/11/2009,7.3,0.0, ,26.0,21.3,76,43,7.99,29.26
+REDCLIFFE,09/11/2009,5.6,6.8, ,24.9,19.1,88,54,8.28,24.81
+REDCLIFFE,10/11/2009,5.5,7.8, ,24.7,16.9,89,52,7.01,25.77
+REDCLIFFE,11/11/2009,6.0,0.2, ,25.0,16.2,80,50,4.84,29.98
+REDCLIFFE,12/11/2009, ,0.0, ,25.6,16.9,87,43,4.51, 
+REDCLIFFE,13/11/2009,6.0,0.0, ,26.2,16.9,79,53,4.77,28.99
+REDCLIFFE,14/11/2009,6.4,0.0, ,26.4,19.6,81,52,4.93,31.15
+REDCLIFFE,15/11/2009,6.7,0.0, ,27.7,18.8,84,48,6.02,30.34
+REDCLIFFE,16/11/2009, ,0.0, ,29.2,20.5,82,47,7.98, 
+REDCLIFFE,17/11/2009, ,0.0, ,32.4,22.2,88,50,8.60, 
+REDCLIFFE,18/11/2009, ,6.2, ,26.1,21.8,83,61,6.60, 
+REDCLIFFE,19/11/2009, ,0.0, ,27.9,22.3,87,67,4.97, 
+REDCLIFFE,20/11/2009, ,0.0, ,30.2,23.3,84,53,6.65, 
+REDCLIFFE,21/11/2009, ,0.0, ,29.1,23.0,81,57,8.14, 
+REDCLIFFE,22/11/2009, ,0.0, ,29.6,22.6,81,49,8.19, 
+REDCLIFFE,23/11/2009, ,0.0, ,29.5,22.9,79,51,7.59, 
+REDCLIFFE,24/11/2009, ,0.2, ,28.6,22.8,78,50,7.43, 
+REDCLIFFE,25/11/2009, ,0.0, ,27.7,22.6,76,46,6.44, 
+REDCLIFFE,26/11/2009, ,0.0, ,28.2,22.2,76,55,6.67, 
+REDCLIFFE,27/11/2009, ,0.0, ,29.6,20.5,84,52,6.94, 
+REDCLIFFE,28/11/2009,7.0,0.0, ,31.4,22.4,78,50,6.69,24.02
+REDCLIFFE,29/11/2009,7.7,0.0, ,32.2,24.0,80,53,8.44,26.25
+REDCLIFFE,30/11/2009,8.2,7.0, ,30.5,22.0,79,42,6.98,31.80
+Totals:,,108.6,35.8, ,,,,,, 

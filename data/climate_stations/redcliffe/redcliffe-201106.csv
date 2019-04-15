@@ -1,0 +1,44 @@
+'IDCKWCDE41,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for REDCLIFFE Queensland for June 2011,,,,,,,,,,
+Issued at 22:34 GMT on Friday 01 July 2011,,,,,,,,,,
+© Copyright Commonwealth of Australia 2011 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+REDCLIFFE,01/06/2011,2.5,0.0, ,20.0,11.0,89,51,3.65,12.27
+REDCLIFFE,02/06/2011,3.2,0.0, ,23.1,12.5,89,50,5.03,14.89
+REDCLIFFE,03/06/2011,3.2,0.2, ,23.3,13.8,83,39,3.38,15.70
+REDCLIFFE,04/06/2011,2.8,0.0, ,23.7,9.9,90,33,2.21,16.00
+REDCLIFFE,05/06/2011,2.4,0.0, ,22.8,12.0,86,43,2.29,12.85
+REDCLIFFE,06/06/2011,2.5,0.0, ,23.4,11.7,90,43,2.23,15.38
+REDCLIFFE,07/06/2011,2.2,0.0, ,21.5,14.5,86,59,3.26,9.60
+REDCLIFFE,08/06/2011,2.2,0.0, ,18.6,14.6,88,42,2.90,9.58
+REDCLIFFE,09/06/2011,2.7,0.0, ,13.4,12.5,51,30,3.42,5.66
+REDCLIFFE,10/06/2011,2.9,0.0, ,20.0,6.4,72,31,2.93,15.52
+REDCLIFFE,11/06/2011,1.8,0.0, ,15.5,9.5,91,53,3.85,6.18
+REDCLIFFE,12/06/2011,1.8,7.0, ,18.0,12.5,91,73,4.54,10.07
+REDCLIFFE,13/06/2011,2.7,0.0, ,21.7,12.2,84,56,4.17,14.98
+REDCLIFFE,14/06/2011,2.6,0.0, ,20.3,10.7,88,50,3.82,15.19
+REDCLIFFE,15/06/2011,2.3,0.0, ,19.1,10.2,86,53,2.95,15.00
+REDCLIFFE,16/06/2011,2.7,0.0, ,20.8,8.8,86,49,3.94,15.01
+REDCLIFFE,17/06/2011,3.7,0.0, ,20.7,11.8,81,34,5.33,15.25
+REDCLIFFE,18/06/2011,3.9,0.0, ,19.5,10.6,60,31,5.00,15.45
+REDCLIFFE,19/06/2011,2.5,0.0, ,19.2,7.7,84,40,2.86,15.47
+REDCLIFFE,20/06/2011,2.4,0.0, ,18.9,6.3,90,43,3.03,15.41
+REDCLIFFE,21/06/2011,3.3,0.0, ,22.6,7.9,89,37,4.14,15.27
+REDCLIFFE,22/06/2011,3.4,0.0, ,18.1,10.5,70,28,4.45,15.62
+REDCLIFFE,23/06/2011,2.5,0.0, ,18.8,6.2,85,36,2.64,15.61
+REDCLIFFE,24/06/2011,2.9,0.0, ,21.2,8.7,85,48,4.21,14.62
+REDCLIFFE,25/06/2011,2.8,0.0, ,20.7,13.8,87,56,5.36,14.69
+REDCLIFFE,26/06/2011,2.8,0.0, ,22.1,13.3,84,53,4.21,14.01
+REDCLIFFE,27/06/2011,2.3,0.0, ,20.1,13.6,87,49,3.47,9.10
+REDCLIFFE,28/06/2011, ,0.0, , ,13.4,86,57,4.96,14.79
+REDCLIFFE,29/06/2011, , , ,20.1, ,88,61,7.88,12.62
+REDCLIFFE,30/06/2011,3.3,2.2, ,20.2,13.4,87,51,7.77,12.69
+Totals:,,76.3,9.4, ,,,,,, 
