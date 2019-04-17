@@ -31,12 +31,13 @@ class NetworkModel:
                       metrics=metrics)
         return model
 
-    def fit_model(self, model, train_x, train_y, valid_x, valid_y, num_epochs=100, batch_size=32):
+    def fit_model(self, model, train_x, train_y, valid_x, valid_y, num_epochs=100, batch_size=32, callback_list=[]):
         model.fit(train_x,
                   train_y,
                   validation_data=(valid_x, valid_y),
                   epochs=num_epochs,
-                  batch_size=batch_size)
+                  batch_size=batch_size,
+                  callbacks=callback_list)
 
 
     def partition_data(self, data, train_percent=0.6, valid_percent=0.2, seed=42):
