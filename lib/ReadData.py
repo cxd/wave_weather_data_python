@@ -1,7 +1,9 @@
 import pandas as pd
 import numpy as py
+import pywt
 from lib import ReadCsv
 from lib import ReadConfig
+from lib import modwt
 
 class ReadData:
 
@@ -15,7 +17,7 @@ class ReadData:
         data = data[data[target_column].notnull()]
         return data
 
-    def readClimateFiles(self, config_data):
+    def readClimateFiles(self, config_data, add_wavelets=False, wavelet_cols=[], wavelet='db8'):
         # Read all files provided by the configuration and return a merged dataset.
         all_data = None
         climateReader = ReadCsv.ReadCsv(config_data['climate']['baseDir'])
@@ -73,9 +75,36 @@ class ReadData:
             summary_wave_data = summary_wave_data.assign(site = site.values)
 
             merged_data = summary_wave_data.merge(climate_data, on='local_date', how='inner')
+
+            if add_wavelets is True and len(wavelet_cols) > 0:
+                merged_data = self.add_wavelet_coefficients(merged_data, wavelet_cols, wavelet)
+                merged_data = merged_data.dropna()
+
+
             if all_data is None:
                 all_data = merged_data
             else:
                 all_data = pd.concat([all_data, merged_data])
+
+        all_data = all_data.sort_values(by=['local_date', 'site_x'])
         self.all_data = all_data
+
+        return all_data
+
+    def add_wavelet_coefficients(self, all_data, columns, wavelet="db3", prefix="", lag=1):
+        # Extend the dataset by adding wavelet coefficients to the selected columns.
+        # Compute the maximal overlap discrete wavelet transform
+        # and obtain 3 wavelet coefficients that are to be added to the feature vectors
+        # the vectors will be shifted by a specified lag amount.
+        for col in columns:
+            A, C1, C2, C3 = modwt.modwt(all_data[col].values, wavelet, 3)
+            nameA = prefix+col+"_A1"
+            name1 = prefix+col+"_C1"
+            name2 = prefix+col+"_C2"
+            name3 = prefix+col+"_C3"
+            # add the coefficients shifted by the specified lag amount
+            all_data[nameA] = pd.Series(A).shift(lag)
+            all_data[name1] = pd.Series(C1).shift(lag)
+            all_data[name2] = pd.Series(C2).shift(lag)
+            all_data[name3] = pd.Series(C3).shift(lag)
         return all_data
