@@ -2,9 +2,8 @@ import os as os
 from lib import ReadCsv
 from lib import ReadConfig
 from lib import ReadData
-
 from lib import NetworkModel
-
+from lib import ModelMetrics
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -27,7 +26,7 @@ plt.show()
 
 sns.pairplot(all_data)
 
-subset = all_data[[
+subset = all_data[["local_date",
     "Hs",
     "Hmax",
     "Tz",
@@ -42,11 +41,13 @@ subset = all_data[[
     "MinRelativeHumidity_pc",
     "Avg10mWindSpeed_m_sec",
     "SolarRadiation_MJ_sqm"]]
-C = subset.corr()
+C = subset[subset.columns[1:4]].corr()
 
 sns.heatmap(C)
 
+
 modeller = NetworkModel.NetworkModel()
+
 
 train, valid, test = modeller.partition_data(subset)
 
@@ -91,8 +92,51 @@ modeller.fit_model(
     num_epochs=100,
     batch_size=32)
 
-model.evaluate(x=test_x.values,
-               y=test_y.values)
+loss, accuracy, mae = model.evaluate(x=test_x.values,
+                                     y=test_y.values)
+
+print("Loss: "+str(loss))
+print("Accuracy: "+str(accuracy))
+print("Mean Absolute Error: "+str(mae))
 
 
+y_sim = model.predict(x=test_x.values)
+y_sim.shape
+
+
+metrics = ModelMetrics.ModelMetrics()
+
+
+
+
+test_dates = test["local_date"]
+
+
+pairs = list(zip(test.columns[0:7], range(0,7)))
+
+
+all_metrics = []
+for pair in pairs[1:len(pairs)]:
+    name = pair[0]
+    idx = pair[1] - 1
+    metricData = {
+        'Property':name,
+        'R2': metrics.r_squared(test[name], y_sim[:,idx]),
+        'agreement_d': metrics.agreement(test[name], y_sim[:,idx]),
+        'efficiency_E': metrics.efficiency(test[name], y_sim[:,idx]),
+        'percentPeakDeviation':metrics.percent_peak_deviation(test[name],y_sim[:,idx]),
+        'RMSE':metrics.root_mean_square_error(test[name],y_sim[:,idx]),
+        'MAE':metrics.mean_absolute_error(test[name],y_sim[:,idx])
+    }
+    all_metrics.append(metricData)
+
+print(all_metrics)
+
+for pair in pairs[1:len(pairs)]:
+    name = pair[0]
+    idx = pair[1] - 1
+    plt.scatter(test["local_date"].values, test[name].values, label="Observed "+name)
+    plt.scatter(test["local_date"].values, y_sim[:,idx], color="red", label="Simulated "+name)
+    plt.legend()
+    plt.show()
 
