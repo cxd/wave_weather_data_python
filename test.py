@@ -142,6 +142,15 @@ for pair in pairs[1:len(pairs)]:
     plt.legend()
     plt.show()
 
+for pair in pairs[1:len(pairs)]:
+    name = pair[0]
+    idx = pair[1] - 1
+    plt.hist(test[name].values, label="Observed "+name, lw=1, alpha=0.6, edgecolor='black')
+    plt.hist(y_sim[:,idx], color="red", label="Simulated "+name, lw=1, alpha=0.6, edgecolor='black')
+    plt.legend()
+    plt.show()
+
+
 all_data2 = reader.readClimateFiles(config_data, add_wavelets=True, wavelet_cols=y_cols)
 
 all_data2.dtypes
@@ -285,3 +294,20 @@ for pair in pairs[1:len(pairs)]:
     plt.scatter(test2["local_date"].values, y_sim2[:,idx], color="red", label="Simulated "+name)
     plt.legend()
     plt.show()
+
+for pair in pairs[1:len(pairs)]:
+    name = pair[0]
+    idx = pair[1] - 1
+    plt.hist(test2[name].values, label="Observed "+name, lw=1, alpha=0.6, edgecolor='black')
+    plt.hist(y_sim2[:,idx], color="red", label="Simulated "+name, lw=1, alpha=0.6, edgecolor='black')
+    plt.legend()
+    plt.show()
+
+
+pair = pairs[1]
+name = pair[0]
+idx = pair[1] - 1
+plt.hist(test2[name].values, label="Observed "+name)
+plt.hist(y_sim2[:,idx], color="red", label="Simulated "+name)
+plt.legend()
+plt.show()
