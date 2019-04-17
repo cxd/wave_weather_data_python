@@ -8,7 +8,7 @@ This project is an experiment in using a simple network architecture to explore 
 
 ## Example Notebook
 
-An ipython notebook running in google colabnet is available here:
+An ipython notebook running in google colabatory is available here:
 
 https://colab.research.google.com/drive/1IR4FKSawpl7wgNghDwV2JsjHtF0nLzo-
 
