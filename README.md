@@ -6,6 +6,13 @@ The question is whether it is possible to learn a relationship between weather r
 
 This project is an experiment in using a simple network architecture to explore the potential for modelling such data.
 
+## Example Notebook
+
+An ipython notebook running in google colabnet is available here:
+
+https://colab.research.google.com/drive/1IR4FKSawpl7wgNghDwV2JsjHtF0nLzo-
+
+
 ## Data Sources
 
 ### Wave Data
