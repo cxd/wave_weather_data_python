@@ -254,7 +254,7 @@ modeller.fit_model(
     batch_size=32)
 
 loss, accuracy, mae = model2.evaluate(x=test_x.values,
-                                     y=test_y.values)
+                                      y=test_y.values)
 
 print("Loss: "+str(loss))
 print("Accuracy: "+str(accuracy))
@@ -267,7 +267,6 @@ test_dates = test2["local_date"]
 
 
 pairs = list(zip(test2.columns[0:7], range(0,7)))
-
 
 all_metrics2 = []
 for pair in pairs[1:len(pairs)]:
@@ -311,3 +310,148 @@ plt.hist(test2[name].values, label="Observed "+name)
 plt.hist(y_sim2[:,idx], color="red", label="Simulated "+name)
 plt.legend()
 plt.show()
+
+## Investivate modelling using min/max standardisation.
+features = ["Evapotranspiration_mm",
+            "Rain_mm",
+            "PanEvaporation_mm",
+            "MaximumTemperature_C",
+            "MaxRelativeHumidity_pc",
+            "MinRelativeHumidity_pc",
+            "Avg10mWindSpeed_m_sec",
+            "SolarRadiation_MJ_sqm",
+            "Hs_C1",
+            "Hs_C2",
+            "Hs_C3",
+            "Hmax_C1",
+            "Hmax_C2",
+            "Hmax_C3",
+            "Tz_C1",
+            "Tz_C2",
+            "Tz_C3",
+            "Tp_C1",
+            "Tp_C2",
+            "Tp_C3",
+            "DirTpTRUE_C1",
+            "DirTpTRUE_C2",
+            "DirTpTRUE_C3",
+            "SST_C1",
+            "SST_C2",
+            "SST_C3",
+            "Hs",
+            "Hmax",
+            "Tz",
+            "Tp",
+            "DirTpTRUE",
+            "SST"]
+
+## The min and max need to be kept for the ability to rescale after training.
+data_min = all_data2[features].min()
+data_max = all_data2[features].max()
+data_delta = data_max[features] - data_min[features]
+
+data_scaled = (all_data2[features] - data_min)/data_delta
+data_scaled['local_date'] = all_data2['local_date']
+
+
+## We now train on the scaled data.
+
+train3, valid3, test3 = modeller.partition_data(data_scaled)
+
+
+train_x = train3[x_cols]
+train_y = train3[y_cols]
+valid_x = valid3[x_cols]
+valid_y = valid3[y_cols]
+test_x = test3[x_cols]
+test_y = test3[y_cols]
+
+num_inputs = train_x.shape[1]
+num_outputs = train_y.shape[1]
+
+model3 = modeller.model_dense(num_inputs, num_outputs)
+
+modeller.compile_model(model3, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False),
+                       "mean_squared_error",
+                       ["acc",
+                        "mae"])
+
+
+modeller.fit_model(
+    model3,
+    train_x.values,
+    train_y.values,
+    valid_x.values,
+    valid_y.values,
+    num_epochs=100,
+    batch_size=32)
+
+loss, accuracy, mae = model3.evaluate(x=test_x.values,
+                                      y=test_y.values)
+
+print("Loss: "+str(loss))
+print("Accuracy: "+str(accuracy))
+print("Mean Absolute Error: "+str(mae))
+
+
+
+y_sim3 = model3.predict(x=test_x.values)
+
+
+y_sim3_scaled = pd.DataFrame(y_sim3, columns=y_cols) * data_delta[y_cols] + data_min[y_cols]
+obs3_scaled = test_y * data_delta[y_cols] + data_min[y_cols]
+
+test_dates = test3["local_date"]
+
+
+pairs = list(zip(['local_date', 'Hs', 'Hmax', 'Tz', 'Tp', 'DirTpTRUE', 'SST'], range(0,7)))
+
+
+all_metrics3 = []
+for pair in pairs[1:len(pairs)]:
+    name = pair[0]
+    idx = pair[1] - 1
+    metricData = {
+        'Model': 'ScaledWaveletDense',
+        'Property':name,
+        'R2': metrics.r_squared(obs3_scaled[name], y_sim3_scaled.values[:,idx]),
+        'agreement_d': metrics.agreement(obs3_scaled[name], y_sim3_scaled.values[:,idx]),
+        'efficiency_E': metrics.efficiency(obs3_scaled[name], y_sim3_scaled.values[:,idx]),
+        'percentPeakDeviation':metrics.percent_peak_deviation(obs3_scaled[name],y_sim3_scaled.values[:,idx]),
+        'RMSE':metrics.root_mean_square_error(obs3_scaled[name],y_sim3_scaled.values[:,idx]),
+        'MAE':metrics.mean_absolute_error(obs3_scaled[name],y_sim3_scaled.values[:,idx])
+    }
+    all_metrics3.append(metricData)
+all_metrics3 = pd.DataFrame.from_dict(all_metrics3)
+print(all_metrics3)
+
+
+for pair in pairs[1:len(pairs)]:
+    name = pair[0]
+    idx = pair[1] - 1
+    plt.scatter(test3["local_date"].values, obs3_scaled[name].values, label="Observed "+name)
+    plt.scatter(test3["local_date"].values, y_sim3_scaled.values[:,idx], color="red", label="Simulated "+name)
+    plt.legend()
+    plt.show()
+
+for pair in pairs[1:len(pairs)]:
+    name = pair[0]
+    idx = pair[1] - 1
+    plt.hist(obs3_scaled[name].values, label="Observed "+name, lw=1, alpha=0.6, edgecolor='black')
+    plt.hist(y_sim3_scaled.values[:,idx], color="red", label="Simulated "+name, lw=1, alpha=0.6, edgecolor='black')
+    plt.legend()
+    plt.show()
+
+metric_data = pd.concat([all_metrics, all_metrics2, all_metrics3])
+
+metrics = ['R2','agreement_d', 'efficiency_E', 'RMSE','MAE','percentPeakDeviation']
+for metric in metrics:
+    sns.barplot(x='Model', y=metric, data=metric_data, hue='Property')
+    plt.show()
+
+
+import numpy as np
+
+a, b = np.corrcoef(y_sim3_scaled["SST"].values, obs3_scaled['SST'].values)
+np.corrcoef(y_sim3_scaled["Hs"].values, obs3_scaled['Hs'].values)
+np.corrcoef(y_sim3_scaled["Hmax"].values, obs3_scaled['Hmax'].values)
