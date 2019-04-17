@@ -4,10 +4,9 @@ from lib import ReadConfig
 from lib import ReadData
 from lib import NetworkModel
 from lib import ModelMetrics
+from lib import SeriesPlot
 import pandas as pd
 import matplotlib.pyplot as plt
-import pywt
-
 import seaborn as sns
 
 import keras
@@ -113,42 +112,15 @@ metrics = ModelMetrics.ModelMetrics()
 test_dates = test["local_date"]
 
 
-pairs = list(zip(test.columns[0:7], range(0,7)))
+pairs = list(zip(test.columns[1:7], range(0, 6)))
+all_metrics = metrics.report_all_metrics('SimpleDense', pairs, test, y_sim)
 
+series_plot = SeriesPlot.SeriesPlot()
 
-all_metrics = []
-for pair in pairs[1:len(pairs)]:
-    name = pair[0]
-    idx = pair[1] - 1
-    metricData = {
-        'Model': 'SimpleDense',
-        'Property':name,
-        'R2': metrics.r_squared(test[name], y_sim[:,idx]),
-        'agreement_d': metrics.agreement(test[name], y_sim[:,idx]),
-        'efficiency_E': metrics.efficiency(test[name], y_sim[:,idx]),
-        'percentPeakDeviation':metrics.percent_peak_deviation(test[name],y_sim[:,idx]),
-        'RMSE':metrics.root_mean_square_error(test[name],y_sim[:,idx]),
-        'MAE':metrics.mean_absolute_error(test[name],y_sim[:,idx])
-    }
-    all_metrics.append(metricData)
-all_metrics = pd.DataFrame.from_dict(all_metrics)
-print(all_metrics)
+series_plot.plot_series(pairs, test['local_date'].values, test, y_sim)
 
-for pair in pairs[1:len(pairs)]:
-    name = pair[0]
-    idx = pair[1] - 1
-    plt.scatter(test["local_date"].values, test[name].values, label="Observed "+name)
-    plt.scatter(test["local_date"].values, y_sim[:,idx], color="red", label="Simulated "+name)
-    plt.legend()
-    plt.show()
+series_plot.plot_histograms(pairs, test, y_sim)
 
-for pair in pairs[1:len(pairs)]:
-    name = pair[0]
-    idx = pair[1] - 1
-    plt.hist(test[name].values, label="Observed "+name, lw=1, alpha=0.6, edgecolor='black')
-    plt.hist(y_sim[:,idx], color="red", label="Simulated "+name, lw=1, alpha=0.6, edgecolor='black')
-    plt.legend()
-    plt.show()
 
 
 all_data2 = reader.readClimateFiles(config_data, add_wavelets=True, wavelet_cols=y_cols)
@@ -263,53 +235,19 @@ print("Mean Absolute Error: "+str(mae))
 y_sim2 = model2.predict(x=test_x.values)
 
 
-test_dates = test2["local_date"]
 
 
-pairs = list(zip(test2.columns[0:7], range(0,7)))
+pairs = list(zip(test2.columns[1:7], range(0,6)))
 
-all_metrics2 = []
-for pair in pairs[1:len(pairs)]:
-    name = pair[0]
-    idx = pair[1] - 1
-    metricData = {
-        'Model': 'WaveletDense',
-        'Property':name,
-        'R2': metrics.r_squared(test2[name], y_sim2[:,idx]),
-        'agreement_d': metrics.agreement(test2[name], y_sim2[:,idx]),
-        'efficiency_E': metrics.efficiency(test2[name], y_sim2[:,idx]),
-        'percentPeakDeviation':metrics.percent_peak_deviation(test2[name],y_sim2[:,idx]),
-        'RMSE':metrics.root_mean_square_error(test2[name],y_sim2[:,idx]),
-        'MAE':metrics.mean_absolute_error(test2[name],y_sim2[:,idx])
-    }
-    all_metrics2.append(metricData)
-all_metrics2 = pd.DataFrame.from_dict(all_metrics2)
+all_metrics2 = metrics.report_all_metrics('WaveletDense', pairs, test2, y_sim2)
+
+series_plot = SeriesPlot.SeriesPlot()
+
+series_plot.plot_series(pairs, test2['local_date'].values, test2, y_sim2)
+
+series_plot.plot_histograms(pairs, test2, y_sim2)
+
 print(all_metrics2)
-
-for pair in pairs[1:len(pairs)]:
-    name = pair[0]
-    idx = pair[1] - 1
-    plt.scatter(test2["local_date"].values, test2[name].values, label="Observed "+name)
-    plt.scatter(test2["local_date"].values, y_sim2[:,idx], color="red", label="Simulated "+name)
-    plt.legend()
-    plt.show()
-
-for pair in pairs[1:len(pairs)]:
-    name = pair[0]
-    idx = pair[1] - 1
-    plt.hist(test2[name].values, label="Observed "+name, lw=1, alpha=0.6, edgecolor='black')
-    plt.hist(y_sim2[:,idx], color="red", label="Simulated "+name, lw=1, alpha=0.6, edgecolor='black')
-    plt.legend()
-    plt.show()
-
-
-pair = pairs[1]
-name = pair[0]
-idx = pair[1] - 1
-plt.hist(test2[name].values, label="Observed "+name)
-plt.hist(y_sim2[:,idx], color="red", label="Simulated "+name)
-plt.legend()
-plt.show()
 
 ## Investivate modelling using min/max standardisation.
 features = ["Evapotranspiration_mm",
@@ -404,43 +342,19 @@ obs3_scaled = test_y * data_delta[y_cols] + data_min[y_cols]
 test_dates = test3["local_date"]
 
 
-pairs = list(zip(['local_date', 'Hs', 'Hmax', 'Tz', 'Tp', 'DirTpTRUE', 'SST'], range(0,7)))
+pairs = list(zip(['Hs', 'Hmax', 'Tz', 'Tp', 'DirTpTRUE', 'SST'], range(0,6)))
 
 
-all_metrics3 = []
-for pair in pairs[1:len(pairs)]:
-    name = pair[0]
-    idx = pair[1] - 1
-    metricData = {
-        'Model': 'ScaledWaveletDense',
-        'Property':name,
-        'R2': metrics.r_squared(obs3_scaled[name], y_sim3_scaled.values[:,idx]),
-        'agreement_d': metrics.agreement(obs3_scaled[name], y_sim3_scaled.values[:,idx]),
-        'efficiency_E': metrics.efficiency(obs3_scaled[name], y_sim3_scaled.values[:,idx]),
-        'percentPeakDeviation':metrics.percent_peak_deviation(obs3_scaled[name],y_sim3_scaled.values[:,idx]),
-        'RMSE':metrics.root_mean_square_error(obs3_scaled[name],y_sim3_scaled.values[:,idx]),
-        'MAE':metrics.mean_absolute_error(obs3_scaled[name],y_sim3_scaled.values[:,idx])
-    }
-    all_metrics3.append(metricData)
-all_metrics3 = pd.DataFrame.from_dict(all_metrics3)
+all_metrics3 = metrics.report_all_metrics('WaveletDense', pairs, obs3_scaled, y_sim3_scaled.values)
+
+series_plot = SeriesPlot.SeriesPlot()
+
+series_plot.plot_series(pairs, test3['local_date'].values, obs3_scaled, y_sim3_scaled.values)
+
+series_plot.plot_histograms(pairs, obs3_scaled, y_sim3_scaled.values)
+
+
 print(all_metrics3)
-
-
-for pair in pairs[1:len(pairs)]:
-    name = pair[0]
-    idx = pair[1] - 1
-    plt.scatter(test3["local_date"].values, obs3_scaled[name].values, label="Observed "+name)
-    plt.scatter(test3["local_date"].values, y_sim3_scaled.values[:,idx], color="red", label="Simulated "+name)
-    plt.legend()
-    plt.show()
-
-for pair in pairs[1:len(pairs)]:
-    name = pair[0]
-    idx = pair[1] - 1
-    plt.hist(obs3_scaled[name].values, label="Observed "+name, lw=1, alpha=0.6, edgecolor='black')
-    plt.hist(y_sim3_scaled.values[:,idx], color="red", label="Simulated "+name, lw=1, alpha=0.6, edgecolor='black')
-    plt.legend()
-    plt.show()
 
 metric_data = pd.concat([all_metrics, all_metrics2, all_metrics3])
 

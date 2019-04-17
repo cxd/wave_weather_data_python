@@ -77,3 +77,24 @@ class ModelMetrics:
         mae = 1.0/n * np.sum(delta)
         return mae
 
+    def report_all_metrics(self, model_name, label_index_pairs, test_data, sim_data):
+        # Report all metrics and return a pandas dataframe.
+        # The label_index_pairs represent the labelname of the test data and the index of the sim data.
+        # Each index must correspond with the same position in the test data as in the simulated data.
+        all_metrics = []
+        for pair in label_index_pairs[0:len(label_index_pairs)]:
+            name = pair[0]
+            idx = pair[1]
+            metricData = {
+                'Model': model_name,
+                'Property':name,
+                'R2': self.r_squared(test_data[name], sim_data[:,idx]),
+                'agreement_d': self.agreement(test_data[name], sim_data[:,idx]),
+                'efficiency_E': self.efficiency(test_data[name], sim_data[:,idx]),
+                'percentPeakDeviation':self.percent_peak_deviation(test_data[name], sim_data[:,idx]),
+                'RMSE':self.root_mean_square_error(test_data[name], sim_data[:,idx]),
+                'MAE':self.mean_absolute_error(test_data[name], sim_data[:,idx])
+            }
+            all_metrics.append(metricData)
+        return pd.DataFrame.from_dict(all_metrics)
+
