@@ -92,6 +92,9 @@ During training it was observed that overfitting started to occur at the followi
 - __Model 4__ > 190 epochs
 - __Model 5__ 1000 epochs were observed with no overfitting on validation data.
 ​
+
+
+
 Comparison of the models suggest __Model 4__ performs best on predicting the target variables than the other models.
 ​
 In general applications of modelling wave buoy data from time series include providing predictions for energy produced by waves, as well as estimates of near shore surges during extreme weather events. 
