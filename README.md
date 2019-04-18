@@ -71,3 +71,25 @@ There is a mild negative correlation between the average 10m windspeed readings 
 Several different methods of preprocessing and data arrangements will need to be attempted as well in as assessing the model skill in predicting the target variability in the wave buoy outputs.
 
 
+5 models are constructed all of which are simple feedforward network models with 2 hidden layers and a single linear output layer.
+​
+The differences between these models are as follows.
+​
+- __Model 1__ simple dense network with inputs for climate observation data, hidden layer with linear activation, hidden layer with relu activation, output linear layer.
+- __Model 2__ the same architecture as the first, but lagged wavelet coefficients for the previous 1 day averages of the wave data. A db3 wavelet function is used to generate the features.
+- __Model 3__ the same architecture as model 2, all inputs are scaled using min/max normalisation.
+- __Model 4__ the same as model 3, however the 2nd hidden layer uses sigmoid activation.
+- __Model 5__ the same as model 3, the 2nd hidden layer uses tanh activation.
+​
+​
+During training it was observed that overfitting started to occur at the following number of epochs.
+​
+- __Model 1__ > 145 epochs
+- __Model 2__ > 90 epochs
+- __Model 3__ > 60 epochs
+- __Model 4__ > 190 epochs
+- __Model 5__ 1000 epochs were observed with no overfitting on validation data.
+​
+Comparison of the models suggest __Model 4__ performs best on predicting the target variables than the other models.
+​
+In general applications of modelling wave buoy data from time series include providing predictions for energy produced by waves, as well as estimates of near shore surges during extreme weather events. 

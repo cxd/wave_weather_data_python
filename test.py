@@ -482,7 +482,9 @@ metric_data = pd.concat([all_metrics, all_metrics2, all_metrics3, all_metrics4, 
 
 metrics = ['R2','agreement_d', 'efficiency_E', 'RMSE','MAE','percentPeakDeviation']
 for metric in metrics:
-    sns.barplot(x='Model', y=metric, data=metric_data, hue='Property')
+    bars = sns.barplot(x='Model', y=metric, data=metric_data, hue='Property')
+    for item in bars.get_xticklabels():
+        item.set_rotation(45)
     plt.show()
 
 
