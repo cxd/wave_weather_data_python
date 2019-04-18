@@ -93,13 +93,14 @@ modeller.compile_model(model, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2
                        ["acc",
                         "mae"])
 
+# model1 overfits at around 150 epochs
 modeller.fit_model(
     model,
     train_x.values,
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=epochs,
+    num_epochs=145,
     batch_size=32,
     callback_list=[tensorboard_callback])
 
@@ -230,14 +231,14 @@ modeller.compile_model(model2, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_
                        ["acc",
                         "mae"])
 
-
+## model2 overfits at > 90 epochs
 modeller.fit_model(
     model2,
     train_x.values,
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=epochs,
+    num_epochs=90,
     batch_size=32,
     callback_list=[tensorboard_callback])
 
@@ -334,14 +335,14 @@ modeller.compile_model(model3, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_
                        ["acc",
                         "mae"])
 
-
+## Model 3 overfits somewhere near 60 epochs
 modeller.fit_model(
     model3,
     train_x.values,
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=epochs,
+    num_epochs=60,
     batch_size=32,
     callback_list=[tensorboard_callback])
 
@@ -391,14 +392,14 @@ modeller.compile_model(model4, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_
                        ["acc",
                         "mae"])
 
-
+## model4 overfits somewhere above 190 epochs
 modeller.fit_model(
     model4,
     train_x.values,
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=epochs,
+    num_epochs=190,
     batch_size=32,
     callback_list=[tensorboard_callback])
 
@@ -441,7 +442,8 @@ modeller.compile_model(model5, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_
                        ["acc",
                         "mae"])
 
-
+## Model 5 seems to continue to decrease for 1000 epochs
+## have not tested longer durations.
 modeller.fit_model(
     model5,
     train_x.values,
