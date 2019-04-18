@@ -11,6 +11,10 @@ import seaborn as sns
 
 import keras
 
+from datetime import datetime
+
+
+
 from pandas.plotting import scatter_matrix
 
 config = ReadConfig.ReadConfig()
@@ -76,6 +80,12 @@ test_y = test[y_cols]
 num_inputs = train_x.shape[1]
 num_outputs = train_y.shape[1]
 
+epochs = 1000
+
+logdir="logs/scalars/model1" + datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+
+
 model = modeller.model_dense(num_inputs, num_outputs)
 
 modeller.compile_model(model, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False),
@@ -89,8 +99,9 @@ modeller.fit_model(
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=100,
-    batch_size=32)
+    num_epochs=epochs,
+    batch_size=32,
+    callback_list=[tensorboard_callback])
 
 loss, accuracy, mae = model.evaluate(x=test_x.values,
                                      y=test_y.values)
@@ -208,6 +219,10 @@ test_y = test2[y_cols]
 num_inputs = train_x.shape[1]
 num_outputs = train_y.shape[1]
 
+logdir="logs/scalars/model2" + datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+
+
 model2 = modeller.model_dense(num_inputs, num_outputs)
 
 modeller.compile_model(model2, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False),
@@ -222,8 +237,9 @@ modeller.fit_model(
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=100,
-    batch_size=32)
+    num_epochs=epochs,
+    batch_size=32,
+    callback_list=[tensorboard_callback])
 
 loss, accuracy, mae = model2.evaluate(x=test_x.values,
                                       y=test_y.values)
@@ -307,6 +323,10 @@ test_y = test3[y_cols]
 num_inputs = train_x.shape[1]
 num_outputs = train_y.shape[1]
 
+logdir="logs/scalars/model3" + datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+
+
 model3 = modeller.model_dense(num_inputs, num_outputs)
 
 modeller.compile_model(model3, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False),
@@ -321,8 +341,9 @@ modeller.fit_model(
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=100,
-    batch_size=32)
+    num_epochs=epochs,
+    batch_size=32,
+    callback_list=[tensorboard_callback])
 
 loss, accuracy, mae = model3.evaluate(x=test_x.values,
                                       y=test_y.values)
@@ -345,7 +366,7 @@ test_dates = test3["local_date"]
 pairs = list(zip(['Hs', 'Hmax', 'Tz', 'Tp', 'DirTpTRUE', 'SST'], range(0,6)))
 
 
-all_metrics3 = metrics.report_all_metrics('WaveletDense', pairs, obs3_scaled, y_sim3_scaled.values)
+all_metrics3 = metrics.report_all_metrics('ScaledWaveletDense', pairs, obs3_scaled, y_sim3_scaled.values)
 
 series_plot = SeriesPlot.SeriesPlot()
 
@@ -356,7 +377,106 @@ series_plot.plot_histograms(pairs, obs3_scaled, y_sim3_scaled.values)
 
 print(all_metrics3)
 
-metric_data = pd.concat([all_metrics, all_metrics2, all_metrics3])
+
+
+# a fourth model using sigmoid activation
+logdir="logs/scalars/model4" + datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+
+
+model4 = modeller.model_dense(num_inputs, num_outputs, hidden_activation='sigmoid')
+
+modeller.compile_model(model4, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False),
+                       "mean_squared_error",
+                       ["acc",
+                        "mae"])
+
+
+modeller.fit_model(
+    model4,
+    train_x.values,
+    train_y.values,
+    valid_x.values,
+    valid_y.values,
+    num_epochs=epochs,
+    batch_size=32,
+    callback_list=[tensorboard_callback])
+
+loss, accuracy, mae = model4.evaluate(x=test_x.values,
+                                      y=test_y.values)
+
+print("Loss: "+str(loss))
+print("Accuracy: "+str(accuracy))
+print("Mean Absolute Error: "+str(mae))
+
+
+y_sim4 = model4.predict(x=test_x.values)
+
+y_sim4_scaled = pd.DataFrame(y_sim4, columns=y_cols) * data_delta[y_cols] + data_min[y_cols]
+
+all_metrics4 = metrics.report_all_metrics('ScaledWaveletDenseSigmoid', pairs, obs3_scaled, y_sim4_scaled.values)
+
+series_plot = SeriesPlot.SeriesPlot()
+
+series_plot.plot_series(pairs, test3['local_date'].values, obs3_scaled, y_sim4_scaled.values)
+
+series_plot.plot_histograms(pairs, obs3_scaled, y_sim4_scaled.values)
+
+
+print(all_metrics4)
+
+
+
+## fifth model using tanh activation
+
+
+logdir="logs/scalars/model5" + datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+
+
+model5 = modeller.model_dense(num_inputs, num_outputs, hidden_activation='tanh')
+
+modeller.compile_model(model5, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False),
+                       "mean_squared_error",
+                       ["acc",
+                        "mae"])
+
+
+modeller.fit_model(
+    model5,
+    train_x.values,
+    train_y.values,
+    valid_x.values,
+    valid_y.values,
+    num_epochs=epochs,
+    batch_size=32,
+    callback_list=[tensorboard_callback])
+
+loss, accuracy, mae = model5.evaluate(x=test_x.values,
+                                      y=test_y.values)
+
+print("Loss: "+str(loss))
+print("Accuracy: "+str(accuracy))
+print("Mean Absolute Error: "+str(mae))
+
+
+y_sim5 = model5.predict(x=test_x.values)
+
+y_sim5_scaled = pd.DataFrame(y_sim5, columns=y_cols) * data_delta[y_cols] + data_min[y_cols]
+
+all_metrics5 = metrics.report_all_metrics('ScaledWaveletDenseTanh', pairs, obs3_scaled, y_sim5_scaled.values)
+
+series_plot = SeriesPlot.SeriesPlot()
+
+series_plot.plot_series(pairs, test3['local_date'].values, obs3_scaled, y_sim5_scaled.values)
+
+series_plot.plot_histograms(pairs, obs3_scaled, y_sim5_scaled.values)
+
+
+print(all_metrics5)
+
+
+metric_data = pd.concat([all_metrics, all_metrics2, all_metrics3, all_metrics4, all_metrics5])
 
 metrics = ['R2','agreement_d', 'efficiency_E', 'RMSE','MAE','percentPeakDeviation']
 for metric in metrics:
