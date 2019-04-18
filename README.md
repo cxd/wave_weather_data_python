@@ -82,6 +82,8 @@ The differences between these models are as follows.
 - __Model 5__ the same as model 3, the 2nd hidden layer uses tanh activation.
 ​
 ​
+
+
 During training it was observed that overfitting started to occur at the following number of epochs.
 ​
 - __Model 1__ > 145 epochs
