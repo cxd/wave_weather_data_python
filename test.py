@@ -80,7 +80,7 @@ test_y = test[y_cols]
 num_inputs = train_x.shape[1]
 num_outputs = train_y.shape[1]
 
-epochs = 1000
+epochs = 500
 
 logdir="logs/scalars/model1" + datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
@@ -100,7 +100,7 @@ modeller.fit_model(
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=145,
+    num_epochs=epochs,
     batch_size=32,
     callback_list=[tensorboard_callback])
 
@@ -140,7 +140,7 @@ all_data2 = reader.readClimateFiles(config_data, add_wavelets=True, wavelet_cols
 all_data2.dtypes
 
 ## we construct a new model using predictors including the wavelet coefficients.
-
+## and wavelet reconstruction for the t-1 record in order to predict t.
 subset2 = all_data2[["local_date",
                    "Hs",
                    "Hmax",
@@ -156,24 +156,30 @@ subset2 = all_data2[["local_date",
                    "MinRelativeHumidity_pc",
                    "Avg10mWindSpeed_m_sec",
                    "SolarRadiation_MJ_sqm",
-                    "Hs_C1",
-                    "Hs_C2",
-                    "Hs_C3",
-                    "Hmax_C1",
-                    "Hmax_C2",
-                    "Hmax_C3",
-                    "Tz_C1",
-                    "Tz_C2",
-                    "Tz_C3",
-                    "Tp_C1",
-                    "Tp_C2",
-                    "Tp_C3",
-                    "DirTpTRUE_C1",
-                    "DirTpTRUE_C2",
-                    "DirTpTRUE_C3",
-                    "SST_C1",
-                    "SST_C2",
-                    "SST_C3"]]
+                     "Hs_A1",
+                     "Hs_C1",
+                     "Hs_C2",
+                     "Hs_C3",
+                     "Hmax_A1",
+                     "Hmax_C1",
+                     "Hmax_C2",
+                     "Hmax_C3",
+                     "Tz_A1",
+                     "Tz_C1",
+                     "Tz_C2",
+                     "Tz_C3",
+                     "Tp_A1",
+                     "Tp_C1",
+                     "Tp_C2",
+                     "Tp_C3",
+                     "DirTpTRUE_A1",
+                     "DirTpTRUE_C1",
+                     "DirTpTRUE_C2",
+                     "DirTpTRUE_C3",
+                     "SST_A1",
+                     "SST_C1",
+                     "SST_C2",
+                     "SST_C3"]]
 
 train2, valid2, test2 = modeller.partition_data(subset2)
 
@@ -185,21 +191,27 @@ x_cols = ["Evapotranspiration_mm",
           "MinRelativeHumidity_pc",
           "Avg10mWindSpeed_m_sec",
           "SolarRadiation_MJ_sqm",
+          "Hs_A1",
           "Hs_C1",
           "Hs_C2",
           "Hs_C3",
+          "Hmax_A1",
           "Hmax_C1",
           "Hmax_C2",
           "Hmax_C3",
+          "Tz_A1",
           "Tz_C1",
           "Tz_C2",
           "Tz_C3",
+          "Tp_A1",
           "Tp_C1",
           "Tp_C2",
           "Tp_C3",
+          "DirTpTRUE_A1",
           "DirTpTRUE_C1",
           "DirTpTRUE_C2",
           "DirTpTRUE_C3",
+          "SST_A1",
           "SST_C1",
           "SST_C2",
           "SST_C3"]
@@ -238,7 +250,7 @@ modeller.fit_model(
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=90,
+    num_epochs=epochs,
     batch_size=32,
     callback_list=[tensorboard_callback])
 
@@ -275,21 +287,27 @@ features = ["Evapotranspiration_mm",
             "MinRelativeHumidity_pc",
             "Avg10mWindSpeed_m_sec",
             "SolarRadiation_MJ_sqm",
+            "Hs_A1",
             "Hs_C1",
             "Hs_C2",
             "Hs_C3",
+            "Hmax_A1",
             "Hmax_C1",
             "Hmax_C2",
             "Hmax_C3",
+            "Tz_A1",
             "Tz_C1",
             "Tz_C2",
             "Tz_C3",
+            "Tp_A1",
             "Tp_C1",
             "Tp_C2",
             "Tp_C3",
+            "DirTpTRUE_A1",
             "DirTpTRUE_C1",
             "DirTpTRUE_C2",
             "DirTpTRUE_C3",
+            "SST_A1",
             "SST_C1",
             "SST_C2",
             "SST_C3",
@@ -342,7 +360,7 @@ modeller.fit_model(
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=60,
+    num_epochs=epochs,
     batch_size=32,
     callback_list=[tensorboard_callback])
 
@@ -399,7 +417,7 @@ modeller.fit_model(
     train_y.values,
     valid_x.values,
     valid_y.values,
-    num_epochs=190,
+    num_epochs=epochs,
     batch_size=32,
     callback_list=[tensorboard_callback])
 

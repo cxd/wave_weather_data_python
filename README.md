@@ -44,6 +44,17 @@ The following wave buoy were selected.
 The climate station observation data is available from the BOM.
 http://www.bom.gov.au/climate/change/datasets/datasets.shtml
 
+The weather station data sets contain readings for:
+
+- Evapo-transpiration (mm)
+- Rain (mm)
+- Pan Evaporation (mm)
+- Maximum Temperature (degrees celcius)
+- Minimum Temperature (degrees celcius)
+- Maximum Relative Humidity (%)
+- Minimum Relative Humidity (%)
+- Average wind speed 10m above sea level (m/sec)
+- Solar Radiation (MJ/sq m)
 
 
 ### Stations selected.
