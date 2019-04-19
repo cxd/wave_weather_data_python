@@ -511,3 +511,76 @@ import numpy as np
 a, b = np.corrcoef(y_sim3_scaled["SST"].values, obs3_scaled['SST'].values)
 np.corrcoef(y_sim3_scaled["Hs"].values, obs3_scaled['Hs'].values)
 np.corrcoef(y_sim3_scaled["Hmax"].values, obs3_scaled['Hmax'].values)
+
+
+
+## Reviewing modwt components of input data.
+plt.subplot(411)
+plt.scatter(all_data2['local_date'], all_data2['SST_A1'], label='A1')
+plt.legend()
+plt.subplot(412)
+plt.scatter(all_data2['local_date'], all_data2['SST_C1'], label='C1')
+plt.legend()
+plt.subplot(413)
+plt.scatter(all_data2['local_date'], all_data2['SST_C2'], label='C2')
+plt.legend()
+plt.subplot(414)
+plt.scatter(all_data2['local_date'], all_data2['SST_C3'], label='C3')
+plt.legend()
+plt.show()
+
+
+
+plt.subplot(411)
+plt.scatter(all_data2['local_date'], all_data2['Hs_A1'], label='A1')
+plt.legend()
+plt.subplot(412)
+plt.scatter(all_data2['local_date'], all_data2['Hs_C1'], label='C1')
+plt.legend()
+plt.subplot(413)
+plt.scatter(all_data2['local_date'], all_data2['Hs_C2'], label='C2')
+plt.legend()
+plt.subplot(414)
+plt.scatter(all_data2['local_date'], all_data2['Hs_C3'], label='C3')
+plt.legend()
+plt.show()
+
+
+
+plt.subplot(411)
+plt.scatter(all_data2['local_date'], all_data2['Hmax_A1'], label='A1')
+plt.legend()
+plt.subplot(412)
+plt.scatter(all_data2['local_date'], all_data2['Hmax_C1'], label='C1')
+plt.legend()
+plt.subplot(413)
+plt.scatter(all_data2['local_date'], all_data2['Hmax_C2'], label='C2')
+plt.legend()
+plt.subplot(414)
+plt.scatter(all_data2['local_date'], all_data2['Hmax_C3'], label='C3')
+plt.legend()
+plt.show()
+
+
+## Inspect wavelet decomposition of SST.
+import pywt
+
+A, C3, C2, C1 = pywt.wavedec(all_data2['SST'].values, 'db3', level=3)
+
+
+plt.subplot(511)
+plt.plot(all_data2['SST'].values, label='SST', color='red')
+plt.legend()
+plt.subplot(512)
+plt.plot(A, label='A1')
+plt.legend()
+plt.subplot(513)
+plt.plot(C1, label='C1')
+plt.legend()
+plt.subplot(514)
+plt.plot(C2, label='C2')
+plt.legend()
+plt.subplot(515)
+plt.plot(C3, label='C3')
+plt.legend()
+plt.show()

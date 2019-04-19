@@ -97,7 +97,7 @@ class ReadData:
         # and obtain 3 wavelet coefficients that are to be added to the feature vectors
         # the vectors will be shifted by a specified lag amount.
         for col in columns:
-            A, C1, C2, C3 = modwt.modwt(all_data[col].values, wavelet, 3)
+            C1, C3, C3, A = modwt.modwt(all_data[col].values, wavelet, 3)
             nameA = prefix+col+"_A1"
             name1 = prefix+col+"_C1"
             name2 = prefix+col+"_C2"
