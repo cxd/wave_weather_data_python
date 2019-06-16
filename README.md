@@ -8,7 +8,10 @@ This project is an experiment in using a simple network architecture to explore 
 
 
 
-In general applications of modelling wave buoy data from time series include providing predictions for energy produced by waves, as well as estimates of near shore surges during extreme weather events. 
+In general applications of modelling wave buoy data from time series 
+include providing predictions for energy produced by waves, 
+as well as estimates of near shore surges during extreme weather events
+or perhaps simply to predict surf conditions for your local break ;) 
 
 
 ## Example Notebooks
