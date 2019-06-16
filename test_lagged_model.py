@@ -154,8 +154,13 @@ for site in sitenames:
         test = pd.concat([test, test1], axis=0)
 
 # Now we have train, validate and test data.
+train = train.dropna()
+validate = validate.dropna()
+test = test.dropna()
 
 # number of input columns
+target_cols = ['Hs', 'Hmax','Tz','Tp','DirTpTRUE','SST']
+
 input_size = len(wavelet_cols)
 output_size = len(target_cols)
 
@@ -190,3 +195,18 @@ loss, accuracy, mae = model.evaluate(x=test[wavelet_cols].values,
 print("Loss: "+str(loss))
 print("Accuracy: "+str(accuracy))
 print("Mean Absolute Error: "+str(mae))
+
+y_sim = model.predict(test[wavelet_cols].values)
+
+
+
+metrics = ModelMetrics.ModelMetrics()
+pairs = list(zip(target_cols, range(0,output_size)))
+
+
+all_metrics = metrics.report_all_metrics('Lagged7Dense', pairs, test[target_cols], y_sim)
+
+series_plot = SeriesPlot.SeriesPlot()
+series_plot.plot_series(pairs, test['dates'].values, test[target_cols], y_sim)
+
+series_plot.plot_histograms(pairs, test[target_cols], y_sim)
