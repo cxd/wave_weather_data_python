@@ -6,6 +6,11 @@ The question is whether it is possible to learn a relationship between weather r
 
 This project is an experiment in using a simple network architecture to explore the potential for modelling such data.
 
+
+
+In general applications of modelling wave buoy data from time series include providing predictions for energy produced by waves, as well as estimates of near shore surges during extreme weather events. 
+
+
 ## Example Notebooks
 
 An ipython notebooks running in google colabatory are available here:
@@ -111,8 +116,6 @@ During training it was observed that overfitting started to occur at the followi
 
 Comparison of the models suggest __Model 4__ performs best on predicting the target variables than the other models.
 ​
-In general applications of modelling wave buoy data from time series include providing predictions for energy produced by waves, as well as estimates of near shore surges during extreme weather events. 
-
 
 ## Modelling with 7-Day Lags - Example Notebook
 
