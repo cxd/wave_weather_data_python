@@ -24,6 +24,44 @@ class NetworkModel:
         model.add(Dense(units=output_size, activation=output_activation))
         return model
 
+    def model_cnn_lagged(self, grouped_cols, lag_start, lag_end, output_size, lag_size, hidden_units=[64], hidden_activation='relu', output_activation='linear', cnn_padding='valid', use_bias=1, pool_size=1, dropout=0.0):
+        # Generate a model with a parallel cnn layer for each of the groups in grouped cols.
+        inputs = []
+        cnn_layers = []
+        pool_layers = []
+        for group in grouped_cols:
+            group_size = len(group)
+            input = keras.layers.Input(shape=(group_size,))
+            dense = keras.layers.Dense(group_size*group_size, input_shape=(group_size,), use_bias=use_bias)(input)
+            reshape = keras.layers.Reshape(target_shape=(group_size, group_size,))(dense)
+            cnn = keras.layers.Conv1D(lag_size,
+                                input_shape=(group_size, 1),
+                                kernel_size=3,
+                                padding=cnn_padding,
+                                activation=hidden_activation,
+                                use_bias=use_bias,
+                                data_format="channels_last",
+                                kernel_initializer=keras.initializers.he_normal(seed=None))(reshape)
+            last = cnn
+            if dropout > 0:
+                last = keras.layers.Dropout(dropout)(cnn)
+            pool = keras.layers.MaxPooling1D(pool_size=pool_size, strides=None, padding=cnn_padding, data_format='channels_last')(last)
+            inputs.append(input)
+            cnn_layers.append(cnn)
+            pool_layers.append(pool)
+        # Merge the three layers togethor.
+        merged = keras.layers.merge.concatenate(pool_layers)
+        flatten = keras.layers.Flatten()(merged)
+        # Add the output layer
+        output = keras.layers.Dense(units=output_size,
+                                        activation=output_activation,
+                                        kernel_initializer=keras.initializers.he_normal(seed=None))(flatten)
+
+        model = keras.models.Model(inputs=inputs, outputs=output)
+        return model
+
+
+
     def compile_model(self, model, optimizer, loss, metrics):
         # Compile the model
         model.compile(loss=loss,

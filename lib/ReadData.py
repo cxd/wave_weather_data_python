@@ -108,3 +108,93 @@ class ReadData:
             all_data[name2] = pd.Series(C2).shift(lag)
             all_data[name3] = pd.Series(C3).shift(lag)
         return all_data
+
+
+    def getsite(self, data, col, site):
+        # Select the subset of the data where the site matches the value of the row.
+        return data[(data[col] == site)]
+
+
+
+    def make_lags(self, data, fromN, maxN):
+        # Generate a lag from step fromN to step maxN
+        for i in range(fromN,maxN):
+            nextData = data.shift(i).dropna()
+            colnames = list(map(lambda col: col+'_t-'+str(i), nextData.columns))
+            nextData.columns = colnames
+            yield nextData
+
+    def make_lags_per_site(self, data, sitecol):
+        # Lag each of the series per site.
+        target_set = None
+        sitenames = data[sitecol].unique()
+        for site in sitenames:
+            data = self.getsite(data, sitecol, site)
+            data.index = range(0,data.shape[0])
+            lags = list(self.make_lags(data, 1,8))
+            minrows = lags[6].shape[0]
+            target = data[6:minrows]
+            for i in range(0,len(lags)):
+                lags[i] = lags[i][i:minrows]
+            lags.append(target)
+            if target_set is None:
+                target_set = pd.concat(lags, axis=1)
+            else:
+                temp = pd.concat(lags, axis=1)
+                target_set = pd.concat([target_set, temp], axis=0)
+        target_set = target_set.dropna()
+        return target_set
+
+    def getlagged_columns(self, seed_cols, lag_start, lag_end):
+        temp = []
+        for col in seed_cols:
+            for i in range(lag_start,lag_end):
+                temp.append(col+'_t-'+str(i))
+        seed_cols.extend(temp)
+        return seed_cols
+
+    def getlagged_group_columns(self, seed_cols, lag_start, lag_end):
+        temp = []
+        group_cols = []
+        for col in seed_cols:
+            temp = []
+            for i in range(lag_start,lag_end):
+                temp.append(col+'_t-'+str(i))
+            group_cols.append(temp)
+        return group_cols
+
+
+
+    def make_windowed_wavelet_decomp(self, data, seed_cols, sitecol, lag_start, lag_end, wavelet='db3'):
+        # Compute wavelet decomposition for wavelet data.
+        norm_data = None
+        sitenames = data[sitecol].unique()
+        seed_cols = self.getlagged_columns(seed_cols, lag_start, lag_end)
+        wavelet_cols = []
+        wavelet_data=None
+        for site in sitenames:
+            data = self.getsite(data, sitecol, site)
+            data = data[seed_cols]
+            for col in seed_cols:
+                C1, C2, C3, A = modwt.modwt(data[col].values, wavelet, 3)
+                nameA = col+"_A1"
+                name1 = col+"_C1"
+                name2 = col+"_C2"
+                name3 = col+"_C3"
+                wavelet_cols.append([nameA,name1,name2,name3])
+                data[nameA] = pd.Series(A)
+                data[name1] = pd.Series(C1)
+                data[name2] = pd.Series(C2)
+                data[name3] = pd.Series(C3)
+            if wavelet_data is None:
+                wavelet_data = data
+            else:
+                wavelet_data = pd.concat([wavelet_data, data], axis=0)
+
+        temp = []
+        for items in wavelet_cols:
+            temp.extend(items)
+
+        wavelet_cols = list(set(temp))
+        return wavelet_cols, wavelet_data
+

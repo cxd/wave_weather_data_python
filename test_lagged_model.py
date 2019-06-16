@@ -23,6 +23,7 @@ all_data = reader.readClimateFiles(config_data)
 subset = all_data[['date','site_x', 'Hs','Hmax','Tz','Tp','DirTpTRUE','SST']]
 subset.describe()
 
+
 def make_date(series):
     for dt in series:
         yield datetime.strptime(dt, '%d/%m/%Y')
@@ -37,7 +38,7 @@ subset2 = pd.concat([subset, datesDf], axis=1)
 
 subset2 = subset2.sort_values('dates')
 
-idx1 = subset2.reindex(columns=['dates','size_x']).index
+idx1 = subset2.reindex(columns=['dates','site_x']).index
 subset2.index = idx1
 
 sitenames = subset2['site_x'].unique()
