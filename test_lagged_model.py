@@ -9,7 +9,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from lib import modwt
-
 import keras
 from datetime import date,datetime,time
 from datetime import datetime
@@ -197,8 +196,6 @@ print("Accuracy: "+str(accuracy))
 print("Mean Absolute Error: "+str(mae))
 
 y_sim = model.predict(test[wavelet_cols].values)
-
-
 
 metrics = ModelMetrics.ModelMetrics()
 pairs = list(zip(target_cols, range(0,output_size)))

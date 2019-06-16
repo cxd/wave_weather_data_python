@@ -109,3 +109,16 @@ During training it was observed that overfitting started to occur at the followi
 Comparison of the models suggest __Model 4__ performs best on predicting the target variables than the other models.
 ​
 In general applications of modelling wave buoy data from time series include providing predictions for energy produced by waves, as well as estimates of near shore surges during extreme weather events. 
+
+
+## Modelling with 7-Day Lags - Example Notebook
+
+The time series lags for t-7 to t-1 days was preprocessed with a Daubechies wavelet decomposition. 
+This approach produced a model that out performed the __Model 4__ in predicting all six target variables for time t.
+The notebook for this model is found at [Feature Engineering Wave Buoy Data with Wavelets](https://colab.research.google.com/drive/1HE7ecPC5hw_AYyVvkElPqR_tvEsnHiX5).
+
+While the wavelet decomposition is very effective, it would be of interest to experiment with a network architecture
+that is able to learn the decomposition directly from the input sequence. 
+For this purpose the next steps are to experiment with a CNN architecture using the number of filters to
+determine the number of decomposition coefficients. This may require several parallel layers with different filter sizes.
+
