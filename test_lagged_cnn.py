@@ -37,9 +37,12 @@ flat_lagged_cols = reader.getlagged_columns(numeric_cols, 1, 8)
 
 modeller = NetworkModel.NetworkModel()
 
-model = modeller.model_cnn_lagged(lagged_cols, 1, 8, len(target_cols), 7, hidden_units=[len(lagged_cols)*2],
+model = modeller.model_cnn_lagged(lagged_cols, len(target_cols), 3,
+                                  hidden_units=len(lagged_cols),
                                   hidden_activation='relu',
-                                  output_activation='linear', cnn_padding='valid', use_bias=1, pool_size=2, dropout=0.0)
+                                  output_activation='linear',
+                                  cnn_padding='valid',
+                                  use_bias=1, pool_size=2, dropout=0.3)
 
 model.summary()
 
@@ -48,8 +51,7 @@ sitenames = subset['site_x'].unique()
 
 group_cols = ['dates','site_x']
 
-temp = target_cols
-temp.extend(flat_lagged_cols)
+temp = flat_lagged_cols
 numeric_data = lagged_data[temp]
 # min-max normalise the numeric input data.
 data_min = numeric_data.min()
@@ -88,38 +90,64 @@ modeller.compile_model(model, keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2
                        ["acc",
                         "mae"])
 
+def convert(data):
+    n = len(data)
+    group_size = data.shape[1]
+    result = data.reshape(n, group_size, 1)
+    return result
+
 # model1 overfits at around 150 epochs
 history = modeller.fit_model(
     model,
-    [train[lagged_cols[0]].values,
-     train[lagged_cols[1]].values,
-     train[lagged_cols[2]].values,
-     train[lagged_cols[3]].values,
-     train[lagged_cols[4]].values,
-     train[lagged_cols[5]].values],
-    train[target_cols].reindex().values,
-    [validate[lagged_cols[0]].values,
-     validate[lagged_cols[1]].values,
-     validate[lagged_cols[2]].values,
-     validate[lagged_cols[3]].values,
-     validate[lagged_cols[4]].values,
-     validate[lagged_cols[5]].values],
-    validate[target_cols].reindex().values,
+    [convert(train[lagged_cols[0]].values),
+     convert(train[lagged_cols[1]].values),
+     convert(train[lagged_cols[2]].values),
+     convert(train[lagged_cols[3]].values),
+     convert(train[lagged_cols[4]].values),
+     convert(train[lagged_cols[5]].values)],
+    train[target_cols[0:6]].reindex().values,
+    [convert(validate[lagged_cols[0]].values),
+     convert(validate[lagged_cols[1]].values),
+     convert(validate[lagged_cols[2]].values),
+     convert(validate[lagged_cols[3]].values),
+     convert(validate[lagged_cols[4]].values),
+     convert(validate[lagged_cols[5]].values)],
+    validate[target_cols[0:6]].reindex().values,
     num_epochs=epochs,
     batch_size=32,
     callback_list=[tensorboard_callback])
 
 
 
-loss, accuracy, mae = model.evaluate(x=[test[lagged_cols[0]].values,
-                                        test[lagged_cols[1]].values,
-                                        test[lagged_cols[2]].values,
-                                        test[lagged_cols[3]].values,
-                                        test[lagged_cols[4]].values,
-                                        test[lagged_cols[5]].values],
-                                     y=test[target_cols].values)
+loss, accuracy, mae = model.evaluate(x=[convert(test[lagged_cols[0]].values),
+                                        convert(test[lagged_cols[1]].values),
+                                        convert(test[lagged_cols[2]].values),
+                                        convert(test[lagged_cols[3]].values),
+                                        convert(test[lagged_cols[4]].values),
+                                        convert(test[lagged_cols[5]].values)],
+                                     y=test[target_cols[0:6]].values)
 
 
 print("Loss: "+str(loss))
 print("Accuracy: "+str(accuracy))
 print("Mean Absolute Error: "+str(mae))
+
+
+y_sim = model.predict([convert(test[lagged_cols[0]].values),
+                       convert(test[lagged_cols[1]].values),
+                       convert(test[lagged_cols[2]].values),
+                       convert(test[lagged_cols[3]].values),
+                       convert(test[lagged_cols[4]].values),
+                       convert(test[lagged_cols[5]].values)])
+
+
+metrics = ModelMetrics.ModelMetrics()
+pairs = list(zip(target_cols, range(0,6)))
+
+
+all_metrics = metrics.report_all_metrics('Lagged7Dense', pairs, test[target_cols], y_sim)
+
+series_plot = SeriesPlot.SeriesPlot()
+series_plot.plot_series(pairs, test['dates'].values, test[target_cols], y_sim)
+
+series_plot.plot_histograms(pairs, test[target_cols], y_sim)
