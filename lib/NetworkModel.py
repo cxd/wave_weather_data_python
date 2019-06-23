@@ -27,11 +27,10 @@ class NetworkModel:
 
     def model_cnn_lagged(self, grouped_cols, output_size, lag_size=1, hidden_units=64,
                          hidden_activation='relu', output_activation='linear', cnn_padding='valid', use_bias=1,
-                         pool_size=1, dropout=0.0):
+                         pool_size=1, dropout=0.0, pool_stride=1):
         # Generate a model with a parallel cnn layer for each of the groups in grouped cols.
+
         inputs = []
-        cnn_layers = []
-        pool_layers = []
         flatten_layers = []
         for group in grouped_cols:
             group_size = len(group)
@@ -50,19 +49,18 @@ class NetworkModel:
             last = cnn
             if dropout > 0:
                 last = keras.layers.Dropout(dropout)(cnn)
-            pool = keras.layers.MaxPooling1D(pool_size=pool_size,
-                                             strides=1,
+            #MaxPooling1D
+            pool = keras.layers.AveragePooling1D(pool_size=pool_size,
+                                             strides=pool_stride,
                                              padding=cnn_padding,
                                              data_format='channels_last')(last)
             last2 = pool
             if dropout > 0:
                 last2 = keras.layers.Dropout(dropout)(pool)
+
             flatten = keras.layers.Flatten()(last2)
 
-
             inputs.append(input)
-            cnn_layers.append(cnn)
-            pool_layers.append(pool)
             flatten_layers.append(flatten)
 
         # Merge the three layers togethor.

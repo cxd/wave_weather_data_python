@@ -37,12 +37,12 @@ flat_lagged_cols = reader.getlagged_columns(numeric_cols, 1, 8)
 
 modeller = NetworkModel.NetworkModel()
 
-model = modeller.model_cnn_lagged(lagged_cols, len(target_cols), 3,
+model = modeller.model_cnn_lagged(lagged_cols, len(target_cols), 7,
                                   hidden_units=len(lagged_cols),
-                                  hidden_activation='relu',
+                                  hidden_activation='tanh',
                                   output_activation='linear',
                                   cnn_padding='valid',
-                                  use_bias=1, pool_size=2, dropout=0.3)
+                                  use_bias=1, pool_size=2, dropout=0.0)
 
 model.summary()
 
@@ -144,8 +144,14 @@ y_sim = model.predict([convert(test[lagged_cols[0]].values),
 metrics = ModelMetrics.ModelMetrics()
 pairs = list(zip(target_cols, range(0,6)))
 
+y_sim_scaled = pd.DataFrame(y_sim)
+y_sim_scaled.columns = target_cols
+y_sim_scaled = y_sim_scaled*data_delta[target_cols] + data_min[target_cols]
+test_scaled = test[target_cols]*data_delta[target_cols] + data_min[target_cols]
 
-all_metrics = metrics.report_all_metrics('Lagged7Dense', pairs, test[target_cols], y_sim)
+
+
+all_metrics = metrics.report_all_metrics('LaggedCNN', pairs, test_scaled, y_sim_scaled)
 
 series_plot = SeriesPlot.SeriesPlot()
 series_plot.plot_series(pairs, test['dates'].values, test[target_cols], y_sim)

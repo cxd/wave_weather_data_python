@@ -22,7 +22,7 @@ An ipython notebooks running in google colabatory are available here:
 
 - [Feature Engineering Wave Buoy Data with Wavelets](https://colab.research.google.com/drive/1HE7ecPC5hw_AYyVvkElPqR_tvEsnHiX5)
 
-
+- [Predicting Lagged Wave Buoy Data with a CNN.](https://colab.research.google.com/drive/1NTvR5Gc758aOIrd4e2DjEy9HlaEW0cPb)
 
 ## Data Sources
 
